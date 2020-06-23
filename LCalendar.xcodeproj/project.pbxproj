@@ -14,6 +14,9 @@
 		2F4E4262249C8626008E3CB2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F4E4261249C8626008E3CB2 /* Preview Assets.xcassets */; };
 		2F4E4265249C8626008E3CB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F4E4263249C8626008E3CB2 /* LaunchScreen.storyboard */; };
 		2F4E4270249C8626008E3CB2 /* LCalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E426F249C8626008E3CB2 /* LCalendarTests.swift */; };
+		2F7A879924A1DCA200B80298 /* CalendarGridStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7A879824A1DCA200B80298 /* CalendarGridStackView.swift */; };
+		2FC04D9F24A0384C000AB9BD /* MonthViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC04D9E24A0384C000AB9BD /* MonthViewItem.swift */; };
+		2FC04DA124A038E0000AB9BD /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC04DA024A038E0000AB9BD /* DateUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,9 @@
 		2F4E426B249C8626008E3CB2 /* LCalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F4E426F249C8626008E3CB2 /* LCalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCalendarTests.swift; sourceTree = "<group>"; };
 		2F4E4271249C8626008E3CB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F7A879824A1DCA200B80298 /* CalendarGridStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarGridStackView.swift; sourceTree = "<group>"; };
+		2FC04D9E24A0384C000AB9BD /* MonthViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthViewItem.swift; sourceTree = "<group>"; };
+		2FC04DA024A038E0000AB9BD /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +85,8 @@
 		2F4E4257249C8622008E3CB2 /* LCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				2F4E427B249C8687008E3CB2 /* DateUtils */,
+				2F4E427A249C8638008E3CB2 /* CalendarView */,
 				2F4E4258249C8622008E3CB2 /* AppDelegate.swift */,
 				2F4E425A249C8622008E3CB2 /* SceneDelegate.swift */,
 				2F4E425C249C8622008E3CB2 /* ContentView.swift */,
@@ -105,6 +113,23 @@
 				2F4E4271249C8626008E3CB2 /* Info.plist */,
 			);
 			path = LCalendarTests;
+			sourceTree = "<group>";
+		};
+		2F4E427A249C8638008E3CB2 /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				2F7A879824A1DCA200B80298 /* CalendarGridStackView.swift */,
+			);
+			path = CalendarView;
+			sourceTree = "<group>";
+		};
+		2F4E427B249C8687008E3CB2 /* DateUtils */ = {
+			isa = PBXGroup;
+			children = (
+				2FC04D9E24A0384C000AB9BD /* MonthViewItem.swift */,
+				2FC04DA024A038E0000AB9BD /* DateUtils.swift */,
+			);
+			path = DateUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +235,9 @@
 			files = (
 				2F4E4259249C8622008E3CB2 /* AppDelegate.swift in Sources */,
 				2F4E425B249C8622008E3CB2 /* SceneDelegate.swift in Sources */,
+				2F7A879924A1DCA200B80298 /* CalendarGridStackView.swift in Sources */,
+				2FC04DA124A038E0000AB9BD /* DateUtils.swift in Sources */,
+				2FC04D9F24A0384C000AB9BD /* MonthViewItem.swift in Sources */,
 				2F4E425D249C8622008E3CB2 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
