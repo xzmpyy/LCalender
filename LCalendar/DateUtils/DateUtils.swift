@@ -19,7 +19,7 @@ class DateUtils{
     ///     - month: 被计算日期的月份
     ///
     /// - Returns: 返回被计算日期上一个月的年份和月份
-    func getPrevious(year: Int, month: Int) -> (previousYear: Int, previousMonth: Int){
+    func getPrevious(year: Int, month: Int) -> (Year: Int, previousMonth: Int){
         switch month {
         case 1:
             return (year - 1, 12)
@@ -34,7 +34,7 @@ class DateUtils{
     ///     - month: 被计算日期的月份
     ///
     /// - Returns: 返回被计算日期下一个月的年份和月份
-    func getNext(year: Int, month: Int) -> (nextYear: Int, nextMonth: Int){
+    func getNext(year: Int, month: Int) -> (Year: Int, nextMonth: Int){
         switch month {
         case 12:
             return (year + 1, 1)
@@ -50,7 +50,6 @@ class DateUtils{
     ///
     /// - Returns: 返回指定年月的天数，和第一天是周几(周日是0)
     func getDaysInMonth(year: Int, month: Int) -> (days: Int, firstDayOfWeek: Int){
-        let calendar = Calendar.current
         
         //指定年月第一天
         var startComps = DateComponents()
@@ -77,9 +76,17 @@ class DateUtils{
     
 }
 
+//当前日历
+let calendar = Calendar.current
+//当前年月日
+let dateNow = Date()
+let yearNow = calendar.component(.year, from: dateNow)
+let monthNow = calendar.component(.month, from: dateNow)
+let dayNow = calendar.component(.day, from: dateNow)
 //月视图顶部星期标题
 let weekTitle = ["S", "M", "T", "W", "T", "F", "S"]
 //单元格宽高
-let cellWith = UIScreen.main.bounds.width / 7
-let cellHeight = UIScreen.main.bounds.width / 7
+let screenWidth = UIScreen.main.bounds.width
+let cellWith = screenWidth / 7
+let cellHeight = screenWidth / 7
 

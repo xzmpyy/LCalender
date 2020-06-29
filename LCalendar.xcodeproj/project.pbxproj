@@ -17,6 +17,9 @@
 		2F7A879924A1DCA200B80298 /* CalendarGridStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7A879824A1DCA200B80298 /* CalendarGridStackView.swift */; };
 		2FC04D9F24A0384C000AB9BD /* MonthViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC04D9E24A0384C000AB9BD /* MonthViewItem.swift */; };
 		2FC04DA124A038E0000AB9BD /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC04DA024A038E0000AB9BD /* DateUtils.swift */; };
+		2FFE223924A2E6650028F2F5 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFE223824A2E6650028F2F5 /* MonthView.swift */; };
+		2FFE223B24A2E80A0028F2F5 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFE223A24A2E80A0028F2F5 /* CalendarView.swift */; };
+		2FFE223F24A2F2290028F2F5 /* CirculateViewPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFE223E24A2F2290028F2F5 /* CirculateViewPager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		2F7A879824A1DCA200B80298 /* CalendarGridStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarGridStackView.swift; sourceTree = "<group>"; };
 		2FC04D9E24A0384C000AB9BD /* MonthViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthViewItem.swift; sourceTree = "<group>"; };
 		2FC04DA024A038E0000AB9BD /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		2FFE223824A2E6650028F2F5 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
+		2FFE223A24A2E80A0028F2F5 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		2FFE223E24A2F2290028F2F5 /* CirculateViewPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirculateViewPager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +125,9 @@
 			isa = PBXGroup;
 			children = (
 				2F7A879824A1DCA200B80298 /* CalendarGridStackView.swift */,
+				2FFE223824A2E6650028F2F5 /* MonthView.swift */,
+				2FFE223A24A2E80A0028F2F5 /* CalendarView.swift */,
+				2FFE223E24A2F2290028F2F5 /* CirculateViewPager.swift */,
 			);
 			path = CalendarView;
 			sourceTree = "<group>";
@@ -235,10 +244,13 @@
 			files = (
 				2F4E4259249C8622008E3CB2 /* AppDelegate.swift in Sources */,
 				2F4E425B249C8622008E3CB2 /* SceneDelegate.swift in Sources */,
+				2FFE223B24A2E80A0028F2F5 /* CalendarView.swift in Sources */,
 				2F7A879924A1DCA200B80298 /* CalendarGridStackView.swift in Sources */,
 				2FC04DA124A038E0000AB9BD /* DateUtils.swift in Sources */,
+				2FFE223F24A2F2290028F2F5 /* CirculateViewPager.swift in Sources */,
 				2FC04D9F24A0384C000AB9BD /* MonthViewItem.swift in Sources */,
 				2F4E425D249C8622008E3CB2 /* ContentView.swift in Sources */,
+				2FFE223924A2E6650028F2F5 /* MonthView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
