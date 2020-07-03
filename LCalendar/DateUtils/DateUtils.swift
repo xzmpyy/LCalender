@@ -83,10 +83,10 @@ let dateNow = Date()
 let yearNow = calendar.component(.year, from: dateNow)
 let monthNow = calendar.component(.month, from: dateNow)
 let dayNow = calendar.component(.day, from: dateNow)
+let pre = DateUtils.shared.getPrevious(year: yearNow, month: monthNow)
+let next = DateUtils.shared.getNext(year: yearNow, month: monthNow)
+let afterNext = DateUtils.shared.getNext(year: next.Year, month: next.nextMonth)
 //月视图顶部星期标题
 let weekTitle = ["S", "M", "T", "W", "T", "F", "S"]
-//单元格宽高
-let screenWidth = UIScreen.main.bounds.width
-let cellWith = screenWidth / 7
-let cellHeight = screenWidth / 7
+
 

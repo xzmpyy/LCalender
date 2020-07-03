@@ -13,17 +13,22 @@ struct MonthViewBlock: View {
     @Binding var monthViewItem: MonthViewItem
     
     var body: some View {
-        VStack {
-            HStack{
-                Text("\(self.monthViewItem.month)")
-                    .frame(width: cellWith, height: cellHeight)
-                    .font(.title)
-                Text(String(self.monthViewItem.year))
-                    .font(.title)
+        GeometryReader { geometry in
+            VStack {
+                HStack{
+                    Text("\(self.monthViewItem.month)")
+                        .frame(width: geometry.size.width / 7, height: geometry.size.width / 7)
+                        .font(.title)
+                    Text(String(self.monthViewItem.year))
+                        .font(.title)
+                    Spacer()
+                }
+                MonthGridStackView(daysList: self.$monthViewItem.daysList, cellSize: geometry.size.width / 7)
                 Spacer()
             }
-            MonthGridStackView(daysList: self.$monthViewItem.daysList)
+            .frame(maxWidth: .infinity)
         }
+        
     }
     
     

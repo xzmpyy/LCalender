@@ -16,6 +16,7 @@ struct MonthGridStackView: View {
     let columns: Int = 7
     //月视图数据源
     @Binding var daysList: [Int]
+    let cellSize: CGFloat
     
     //使用VStack嵌套HStack达到网格效果
     var body: some View {
@@ -30,7 +31,7 @@ struct MonthGridStackView: View {
                         }
                         else{
                             Text("\(self.daysList[row * 7 + column])")
-                            .frame(width: cellWith, height: cellHeight)
+                                .frame(width: self.cellSize, height: self.cellSize)
                         }
                     }
                 }
