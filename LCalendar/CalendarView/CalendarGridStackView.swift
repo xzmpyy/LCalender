@@ -21,17 +21,19 @@ struct MonthGridStackView: View {
     //使用VStack嵌套HStack达到网格效果
     var body: some View {
         VStack(spacing: 0) {
-            ForEach(0 ..< rows) { row in
+            ForEach(0 ..< self.rows , id: \.self) { row in
                 HStack(spacing: 0) {
-                    ForEach(0 ..< self.columns) { column in
+                    ForEach(0 ..< self.columns, id: \.self) { column in
                         //获取对应行列单元格在月视图数据源日期数组中的索引位置
                         //若值为-1代表该单元格不在该月日期范围内，不显示内容
-                        if self.daysList[row * 7 + column] == -1{
-                            Spacer()
-                        }
-                        else{
-                            Text("\(self.daysList[row * 7 + column])")
-                                .frame(width: self.cellSize, height: self.cellSize)
+                        Group{
+                            if self.daysList[row * 7 + column] == -1{
+                                Spacer()
+                            }
+                            else{
+                                Text("\(self.daysList[row * 7 + column])")
+                                    .frame(width: self.cellSize, height: self.cellSize)
+                            }
                         }
                     }
                 }

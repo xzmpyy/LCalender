@@ -6,7 +6,7 @@
 //  Copyright © 2020 张捷. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
 //代表一个月视图的数据结构体
 struct MonthViewItem {
@@ -52,9 +52,8 @@ struct MonthViewItem {
         let daysComps = DateUtils.shared.getDaysInMonth(year: year, month: month)
         self.days = daysComps.days
         self.firstDayOfWeek = daysComps.firstDayOfWeek
-        
         self.daysList.removeAll()
-        
+
         //根据天数不全日期列表
         //若当月第一天非周日，在前面补-1
         if self.firstDayOfWeek > 0{
@@ -62,6 +61,7 @@ struct MonthViewItem {
                 self.daysList.append(-1)
             }
         }
+        
         //填充日期列表
         for day in 1 ... self.days{
             self.daysList.append(day)
