@@ -24,14 +24,19 @@ struct MonthGridStackView: View {
     @Binding var daysList: [Int]
     //父容器传入的日期选择标识
     @EnvironmentObject var selectDate: SelectedDateItem
+    //响应日历点击事件的方法，参数为年、月、日
+    var onDayItemClicked: ((Int, Int, Int) -> Void)?
     
-    init(cellSize: CGFloat, year: Binding<Int>, month: Binding<Int>, daysList: Binding<[Int]>) {
+    init(cellSize: CGFloat, year: Binding<Int>, month: Binding<Int>, daysList: Binding<[Int]>, onDayItemClicked: ((Int, Int, Int) -> Void)?) {
         self.cellSize = cellSize
         self.barWidth = cellSize / 4 * 3
         self.barHeight = cellSize / 10
         self._year = year
         self._month = month
         self._daysList = daysList
+        if onDayItemClicked != nil{
+            self.onDayItemClicked = onDayItemClicked
+        }
     }
     
     //使用VStack嵌套HStack达到网格效果
@@ -61,6 +66,10 @@ struct MonthGridStackView: View {
                                     self.selectDate.year = self.year
                                     self.selectDate.month = self.month
                                     self.selectDate.day = self.daysList[row * 7 + column]
+                                    //响应日期被点击的回调函数
+                                    if self.onDayItemClicked != nil{
+                                        self.onDayItemClicked!(self.year, self.month, self.daysList[row * 7 + column])
+                                    }
                                 }
                             }
                         }
@@ -78,7 +87,7 @@ struct SelectedBar: View {
     
     let barWidth: CGFloat
     let barHeight: CGFloat
-
+    
     var body: some View {
         VStack {
             Spacer()
@@ -88,3 +97,4 @@ struct SelectedBar: View {
         }
     }
 }
+

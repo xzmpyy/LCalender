@@ -11,10 +11,13 @@ import SwiftUI
 struct CalendarView: View {
     
     let viewWidth: CGFloat
+    //月视图的四个页面列表
     @State var monthViewItems = [MonthViewItem(year: pre.Year, month: pre.previousMonth),
                                  MonthViewItem(year: yearNow, month: monthNow),
                                  MonthViewItem(year: next.Year, month: next.nextMonth),
                                  MonthViewItem(year: afterNext.Year, month: afterNext.nextMonth)]
+    //响应日期被点击的回调函数
+    var onDayItemClicked: ((Int, Int, Int) -> Void)?
     //日期选择标识
     var selectDate: SelectedDateItem = SelectedDateItem(year: yearNow, month: monthNow, day: dayNow)
     
@@ -30,8 +33,8 @@ struct CalendarView: View {
             }
             .frame(height: self.viewWidth / 7 )
             //月视图组件
-            CirculateViewPager(viewWidth: self.viewWidth, viewHeight: self.viewWidth, viewCount: 4, delegate: self.monthViewResetToBorder(index:leftOrRight:)) { index in
-                MonthViewBlock(monthViewItem: self.$monthViewItems[index])
+            CirculateViewPager(viewWidth: self.viewWidth, viewHeight: self.viewWidth, viewCount: 4, monthViewResetToBorderDelegate: self.monthViewResetToBorder(index:leftOrRight:)) { index in
+                MonthViewBlock(monthViewItem: self.$monthViewItems[index], onDayItemClicked: self.onDayItemClicked)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color("CalendarBackgroundColor"))
             }
@@ -40,6 +43,12 @@ struct CalendarView: View {
         .frame(width: viewWidth)
     }
     
+    /// 当页面被置左置右时，刷新页面内容的方法
+    /// - Parameters:
+    ///     - index: 即将被置于边界的页面在页面列表中的索引
+    ///     - leftOrRight: true为置左，false为置右
+    ///
+    /// - Returns: Void
     func monthViewResetToBorder(index: Int, leftOrRight: Bool){
         var newYear = self.monthViewItems[index].year
         var newMonth = self.monthViewItems[index].month

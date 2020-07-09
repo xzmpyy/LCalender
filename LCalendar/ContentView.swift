@@ -12,10 +12,16 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            CalendarView(viewWidth: UIScreen.main.bounds.width)
+            CalendarView(viewWidth: UIScreen.main.bounds.width, onDayItemClicked: self.onDayItemClicked(year:month:day:))
             Spacer()
         }
     }
+    
+    //响应日期被点击的回调函数
+    func onDayItemClicked(year: Int, month: Int, day: Int){
+        print("\(year)-\(month)-\(day)")
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

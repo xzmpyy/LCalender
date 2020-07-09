@@ -27,7 +27,7 @@ struct CirculateViewPager<Content>: View where Content: View {
     let viewCount: Int
     let content: (Int) -> Content
     //当页面将被置为最左或最右时触发，Int代表页面的索引，Bool代表是置右还是置左，左为真，右为假
-    var delegate: ((Int, Bool) -> Void)
+    var monthViewResetToBorderDelegate: ((Int, Bool) -> Void)
     
     //当页面超出范围将要切换时触发的方法，参数为页面索引和重置偏移（至最左为真，置最右为假）
     //let delegate: (Int, Bool) -> Void
@@ -41,7 +41,7 @@ struct CirculateViewPager<Content>: View where Content: View {
     ///     - content: 闭包，根据轮播图索引位置返回对应视图，默认显示index为1的视图
     ///
     /// - Returns: 轮播图View
-    init(viewWidth: CGFloat, viewHeight: CGFloat, viewCount: Int, delegate: @escaping ((Int, Bool) -> Void), content: @escaping (Int) -> Content){
+    init(viewWidth: CGFloat, viewHeight: CGFloat, viewCount: Int, monthViewResetToBorderDelegate: @escaping ((Int, Bool) -> Void), content: @escaping (Int) -> Content){
         self.viewWidth = viewWidth
         self.viewHeight = viewHeight
         self.minDistanceToChangePage = viewWidth / 4
@@ -49,7 +49,7 @@ struct CirculateViewPager<Content>: View where Content: View {
         //最大偏移倍数为视图个数除以2再向上取整
         self.maxOffsetTimes = viewCount - 2
         self.content = content
-        self.delegate = delegate
+        self.monthViewResetToBorderDelegate = monthViewResetToBorderDelegate
     }
     
     var body: some View {
@@ -110,7 +110,7 @@ struct CirculateViewPager<Content>: View where Content: View {
             newOffset = oldOffset - self.viewWidth
             //超出左边键，置最右
             if newOffset < CGFloat(-self.maxOffsetTimes) * self.viewWidth{
-                self.delegate(index, self.leftOrRight)
+                self.monthViewResetToBorderDelegate(index, self.leftOrRight)
                 newOffset = self.viewWidth
             }
         }
@@ -119,7 +119,7 @@ struct CirculateViewPager<Content>: View where Content: View {
             newOffset = oldOffset + self.viewWidth
             //超出右边界，置最左
             if newOffset > CGFloat(self.maxOffsetTimes) * self.viewWidth{
-                self.delegate(index, self.leftOrRight)
+                self.monthViewResetToBorderDelegate(index, self.leftOrRight)
                 newOffset = -self.viewWidth
             }
         }
