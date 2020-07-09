@@ -23,7 +23,7 @@ struct MonthViewBlock: View {
                         .font(.title)
                     Spacer()
                 }
-                MonthGridStackView(daysList: self.$monthViewItem.daysList, cellSize: geometry.size.width / 7)
+                MonthGridStackView(cellSize: geometry.size.width / 7, year: self.$monthViewItem.year, month: self.$monthViewItem.month, daysList: self.$monthViewItem.daysList)
                 Spacer()
             }
             .frame(maxWidth: .infinity)

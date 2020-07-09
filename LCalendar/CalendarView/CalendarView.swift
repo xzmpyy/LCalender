@@ -15,6 +15,8 @@ struct CalendarView: View {
                                  MonthViewItem(year: yearNow, month: monthNow),
                                  MonthViewItem(year: next.Year, month: next.nextMonth),
                                  MonthViewItem(year: afterNext.Year, month: afterNext.nextMonth)]
+    //日期选择标识
+    var selectDate: SelectedDateItem = SelectedDateItem(year: yearNow, month: monthNow, day: dayNow)
     
     var body: some View {
         VStack {
@@ -34,6 +36,7 @@ struct CalendarView: View {
                     .background(Color("CalendarBackgroundColor"))
             }
         }
+        .environmentObject(self.selectDate)
         .frame(width: viewWidth)
     }
     
