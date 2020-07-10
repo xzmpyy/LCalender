@@ -3,6 +3,8 @@
 
 A Lateral Sliding Calendar View Made In SwiftUI
 
+![avatar](https://raw.githubusercontent.com/xzmpyy/LCalender/master/CalendarView.gif)
+
 *****
 ### 添加说明 Add To Your Project
 请下载压缩包后解压，将解压后的文件添加至工程
