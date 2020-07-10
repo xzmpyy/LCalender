@@ -16,16 +16,18 @@ struct MonthViewBlock: View {
     
     var body: some View {
         GeometryReader { geometry in
-            VStack {
+            VStack(spacing: 0.0) {
                 HStack{
                     Text("\(self.monthViewItem.month)")
+                        .foregroundColor(TextColor)
                         .frame(width: geometry.size.width / 7, height: geometry.size.width / 7)
                         .font(.title)
                     Text(String(self.monthViewItem.year))
+                        .foregroundColor(TextColor)
                         .font(.title)
                     Spacer()
                 }
-                MonthGridStackView(cellSize: geometry.size.width / 7, year: self.$monthViewItem.year, month: self.$monthViewItem.month, daysList: self.$monthViewItem.daysList, onDayItemClicked: self.onDayItemClicked)
+                MonthGridStackView(cellSize: geometry.size.width / 7, monthViewItem: self.$monthViewItem, onDayItemClicked: self.onDayItemClicked)
                 Spacer()
             }
             .frame(maxWidth: .infinity)

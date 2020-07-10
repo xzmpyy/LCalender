@@ -18,22 +18,18 @@ struct MonthGridStackView: View {
     let cellSize: CGFloat
     let barWidth: CGFloat
     let barHeight: CGFloat
-    @Binding var year: Int
-    @Binding var month: Int
-    //月视图数据源
-    @Binding var daysList: [Int]
+    //月视图数据对象
+    @Binding var monthViewItem: MonthViewItem
     //父容器传入的日期选择标识
     @EnvironmentObject var selectDate: SelectedDateItem
     //响应日历点击事件的方法，参数为年、月、日
     var onDayItemClicked: ((Int, Int, Int) -> Void)?
     
-    init(cellSize: CGFloat, year: Binding<Int>, month: Binding<Int>, daysList: Binding<[Int]>, onDayItemClicked: ((Int, Int, Int) -> Void)?) {
+    init(cellSize: CGFloat, monthViewItem: Binding<MonthViewItem>, onDayItemClicked: ((Int, Int, Int) -> Void)?) {
         self.cellSize = cellSize
         self.barWidth = cellSize / 4 * 3
         self.barHeight = cellSize / 10
-        self._year = year
-        self._month = month
-        self._daysList = daysList
+        self._monthViewItem = monthViewItem
         if onDayItemClicked != nil{
             self.onDayItemClicked = onDayItemClicked
         }
@@ -48,27 +44,34 @@ struct MonthGridStackView: View {
                         //获取对应行列单元格在月视图数据源日期数组中的索引位置
                         //若值为-1代表该单元格不在该月日期范围内，不显示内容
                         Group{
-                            if self.daysList[row * 7 + column] == -1{
-                                Color("CalendarBackgroundColor")
+                            if self.monthViewItem.daysList[row * 7 + column] == -1{
+                                CalendarBackgroundColor
                                 .frame(width: self.cellSize, height: self.cellSize)
                             }
                             else{
                                 ZStack {
-                                    if self.selectDate.year == self.year && self.selectDate.month == self.month{
-                                        if "\(self.selectDate.day)" == "\(self.daysList[row * 7 + column])"{
+                                    //是否显示日期单元格背景
+                                    if "\(self.monthViewItem.isShowBackgroundList[row * 7 + column])" == "true"{
+                                        DayItemBackground(cellWidth: self.cellSize)
+                                    }
+                                    //是否显示日期选中的标识
+                                    if self.selectDate.year == self.monthViewItem.year && self.selectDate.month == self.monthViewItem.month{
+                                        if "\(self.selectDate.day)" == "\(self.monthViewItem.daysList[row * 7 + column])"{
                                             SelectedBar(barWidth: self.barWidth, barHeight: self.barHeight)
                                         }
                                     }
-                                    Text("\(self.daysList[row * 7 + column])")
-                                    .frame(width: self.cellSize, height: self.cellSize)
+                                    //日期显示文字
+                                    Text("\(self.monthViewItem.daysList[row * 7 + column])")
+                                        .foregroundColor(TextColor)
+                                        .frame(width: self.cellSize, height: self.cellSize)
                                 }
                                 .onTapGesture {
-                                    self.selectDate.year = self.year
-                                    self.selectDate.month = self.month
-                                    self.selectDate.day = self.daysList[row * 7 + column]
+                                    self.selectDate.year = self.monthViewItem.year
+                                    self.selectDate.month = self.monthViewItem.month
+                                    self.selectDate.day = self.monthViewItem.daysList[row * 7 + column]
                                     //响应日期被点击的回调函数
                                     if self.onDayItemClicked != nil{
-                                        self.onDayItemClicked!(self.year, self.month, self.daysList[row * 7 + column])
+                                        self.onDayItemClicked!(self.monthViewItem.year, self.monthViewItem.month, self.monthViewItem.daysList[row * 7 + column])
                                     }
                                 }
                             }
@@ -98,3 +101,17 @@ struct SelectedBar: View {
     }
 }
 
+//日期单元格背景
+struct DayItemBackground: View {
+    
+    let cellWidth: CGFloat
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            Rectangle()
+            .frame(width: self.cellWidth / 10, height: self.cellWidth / 10)
+                .clipShape(Circle())
+        }
+    }
+}

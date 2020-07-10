@@ -8,6 +8,10 @@
 
 import SwiftUI
 
+let CalendarBackgroundColor = Color("CalendarBackgroundColor")
+let AccentColorInCalendar = Color("AccentColorInCalendar")
+let TextColor = Color.primary
+
 struct CalendarView: View {
     
     let viewWidth: CGFloat
@@ -22,21 +26,23 @@ struct CalendarView: View {
     var selectDate: SelectedDateItem = SelectedDateItem(year: yearNow, month: monthNow, day: dayNow)
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0.0) {
             //星期栏
             HStack(spacing: 0) {
                 ForEach(0 ..< 7) { i in
                     Text(weekTitle[i])
                         .fontWeight(.bold)
+                        .foregroundColor(TextColor)
                         .frame(width: self.viewWidth / 7 )
                 }
             }
             .frame(height: self.viewWidth / 7 )
+            .background(CalendarBackgroundColor)
             //月视图组件
             CirculateViewPager(viewWidth: self.viewWidth, viewHeight: self.viewWidth, viewCount: 4, monthViewResetToBorderDelegate: self.monthViewResetToBorder(index:leftOrRight:)) { index in
                 MonthViewBlock(monthViewItem: self.$monthViewItems[index], onDayItemClicked: self.onDayItemClicked)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color("CalendarBackgroundColor"))
+                    .background(CalendarBackgroundColor)
             }
         }
         .environmentObject(self.selectDate)
